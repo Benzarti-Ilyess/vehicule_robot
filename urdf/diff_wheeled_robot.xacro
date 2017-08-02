@@ -263,7 +263,7 @@
   <gazebo reference="hokuyo_link">
     <material>Gazebo/Blue</material>
     <turnGravityOff>false</turnGravityOff>
-    <sensor type="ray" name="head_hokuyo_sensor">
+    <sensor type="gpu_ray" name="head_hokuyo_sensor">
       <pose>${hokuyo_size/2} 0 0 0 0 0</pose>
       <visualize>true</visualize>
       <update_rate>40</update_rate>
@@ -282,7 +282,7 @@
           <resolution>0.001</resolution>
         </range>
       </ray>
-      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
         <topicName>/scan_ilyess</topicName>
         <frameName>hokuyo_link</frameName>
       </plugin>
@@ -296,7 +296,7 @@
 
       <rosDebugLevel>Debug</rosDebugLevel>
       <publishWheelTF>false</publishWheelTF>
-      <robotNamespace>/</robotNamespace>
+      <robotNamespace></robotNamespace>
       <publishTf>1</publishTf>
       <publishWheelJointState>false</publishWheelJointState>
       <alwaysOn>true</alwaysOn>
@@ -375,7 +375,7 @@
       <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>0.0</updateRate>
-        <cameraName>rrbot/camera1</cameraName>
+        <cameraName>ilyess/camera1</cameraName>
         <imageTopicName>image_raw</imageTopicName>
         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
         <frameName>camera_link</frameName>
@@ -388,4 +388,97 @@
       </plugin>
     </sensor>
   </gazebo>
+
+
+<!--
+ <gazebo reference="hokuyo_link">
+    <sensor name='center_laser_sensor' type='ray'>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>512</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14</min_angle>
+            <max_angle>3.14</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>16</samples>
+            <min_angle>-0.1</min_angle>
+            <max_angle>-0.35</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.2</min>
+          <max>30</max>
+          <resolution>0.01</resolution>
+        </range>
+      </ray>
+      <plugin name='center_laser' filename='libgazebo_ros_block_laser.so'>
+        <topicName>/ilyess/pointclouds</topicName>
+        <frameName>hokuyo_link</frameName>
+      </plugin>
+      <always_on>1</always_on>
+      <update_rate>30</update_rate>
+      <visualize>0</visualize>
+    </sensor>
+  </gazebo>
+-->
+<!--<gazebo reference="hokuyo_link">
+   <mu1>0.6</mu1>
+   <mu2>0.5</mu2>
+</gazebo>-->
+<!---
+<gazebo reference="hokuyo_link">
+        <sensor type="ray" name="lidar_sensor">
+              <pose>0 0 0 0 0 0</pose>
+                   <visualize>true</visualize>
+                    <update_rate>5</update_rate>
+                       <ray>
+                           <scan>
+                                <horizontal>
+                                       <samples>100</samples>
+                                           <resolution>1</resolution>
+                                            <min_angle>-0.4</min_angle>
+                                            <max_angle>0.4</max_angle>
+                                </horizontal>
+				<vertical>
+					<samples>20</samples>
+					<resolution>1</resolution>
+					<min_angle>-0.034906585</min_angle>
+	-->	<!--			<max_angle>0.432841654</max_angle> -->
+		<!--			<max_angle>0.326</max_angle>
+				</vertical>
+                           </scan>
+                           <range>
+                                  <min>1</min>
+                                  <max>50.0</max>
+                                 <resolution>0.02</resolution>
+                           </range>
+                      </ray>
+ --><!--                <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+                   <topicName>/cat/laser/scan</topicName>
+                      <frameName>laser_link</frameName>  -->
+	<!--		   <plugin name="laser_controller" filename="libgazebo_ros_block_laser.so">
+			      <frameName>hokuyo_link</frameName>
+			      <hokuyoMinIntensity>101</hokuyoMinIntensity>
+			      <robotNamespace>/</robotNamespace>
+			      <topicName>lidar_points</topicName>
+			      <gaussianNoise>0.02</gaussianNoise>
+			      <updateRate>5</updateRate>
+                 </plugin>
+      </sensor>
+</gazebo>
+
+-->
+ <gazebo>
+    <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
+      <alwaysOn>true</alwaysOn>
+      <bodyName>base_link</bodyName>
+      <topicName>imu</topicName>
+      <serviceName>imu_service</serviceName>
+      <gaussianNoise>0.0</gaussianNoise>
+      <updateRate>20.0</updateRate>
+    </plugin>
+  </gazebo>
+
 </robot>
