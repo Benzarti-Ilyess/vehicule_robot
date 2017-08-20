@@ -406,11 +406,11 @@
                                 <horizontal>
                                        <samples>100</samples>
                                            <resolution>1</resolution>
-                                            <min_angle>-0.4</min_angle>
-                                            <max_angle>0.4</max_angle>
+                                            <min_angle>-1.4</min_angle>
+                                            <max_angle>1.4</max_angle>
                                 </horizontal>
 				<vertical>
-					<samples>20</samples>
+					<samples>100</samples>
 					<resolution>1</resolution>
 					<min_angle>-0.034906585</min_angle>
 		<!--			<max_angle>0.432841654</max_angle> -->
